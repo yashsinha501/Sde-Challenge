@@ -1,1 +1,21 @@
-
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &p, int n)
+{
+    int ind1=0,ind2=0;
+    
+    for(ind1=n-2;ind1>=0;ind1--){
+        if(p[ind1]<p[ind1+1])
+            break;
+    }
+    
+    if(ind1<0)reverse(p.begin(),p.end());
+    else{
+        for(ind2=n-1;ind2>ind1;ind2--){
+            if(p[ind2]>p[ind1])
+                break;
+        }
+        swap(p[ind2],p[ind1]);
+        reverse(p.begin()+ind1+1,p.end());
+    }
+   return p; 
+}
