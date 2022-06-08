@@ -1,3 +1,6 @@
+
+TLE
+
 #include <bits/stdc++.h> 
 int lengthOfLongestConsecutiveSequence(vector<int> &arr, int n) {
 
@@ -14,6 +17,37 @@ int lengthOfLongestConsecutiveSequence(vector<int> &arr, int n) {
             int curCnt=1;
             
         while(s.count(curEle+1)){
+            curEle+=1;
+            curCnt+=1;
+        }
+
+         ans=max(ans,curCnt);
+            
+        }           
+    }
+    return ans;
+}
+
+
+NON-TLE
+
+
+#include <bits/stdc++.h> 
+int lengthOfLongestConsecutiveSequence(vector<int> &arr, int n) {
+
+    unordered_set<int> s;
+    int ans=0;
+    
+    for(int num:arr){
+        s.insert(num);
+    }
+    
+    for(int num:arr){
+        if(s.find(num-1)==s.end()){
+            int curEle=num;
+            int curCnt=1;
+            
+        while(s.find(curEle+1)!=s.end()){
             curEle+=1;
             curCnt+=1;
         }
