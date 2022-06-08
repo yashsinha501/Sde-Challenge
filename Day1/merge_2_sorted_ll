@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+
+Node<int>* sortTwoLists(Node<int>* l1, Node<int>* l2)
+{
+    if(l1==nullptr)return l2;
+    
+    if(l2==nullptr)return l1;
+    
+    if(l1->data>l2->data) swap(l1,l2);
+    
+    Node<int>* res=l1;
+    
+    while(l1!=nullptr and l2!=nullptr){
+        Node<int>* tmp=nullptr;
+        
+        while(l1 != NULL && l1->data <= l2->data) {
+
+                tmp = l1;
+                l1 = l1->next;
+            }
+
+            tmp->next = l2;
+            swap(l1,l2);
+        }
+
+        return res;
+    }
