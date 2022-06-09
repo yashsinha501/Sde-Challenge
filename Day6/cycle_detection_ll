@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+
+bool detectCycle(Node *head)
+{
+    if(head==nullptr)return false;
+    Node* fast=head;
+    Node* slow=head;
+    
+    while(fast->next!=nullptr and fast->next->next!=nullptr){
+        fast=fast->next->next;
+        slow=slow->next;
+        if(slow==fast)return true;
+    }
+    return false;
+}
