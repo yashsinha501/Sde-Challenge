@@ -1,0 +1,89 @@
+TLE => 
+
+#include <bits/stdc++.h> 
+
+Node* mergeLL(Node* a,Node* b){
+
+    Node* tmp=new Node(0);
+    Node* res=tmp;
+    
+    while(a!=nullptr and b!=nullptr){
+        if(a->data<b->data){
+            tmp->child=a;
+            tmp=tmp->child;
+            a=a->child;
+        }
+        else{
+            tmp->child=b;
+            tmp=tmp->child;
+            b=b->child;
+        }
+    }
+    
+    if(a)tmp->child=a;
+    else tmp->child=b;
+    
+    return res->child;
+    
+}
+
+Node* flattenLinkedList(Node* root) 
+{
+    if(root==nullptr || root->next==nullptr)return root;
+    
+    root->next=flattenLinkedList(root->next);
+    
+    root=mergeLL(root,root->next);
+    
+    return root;
+    
+}
+
+
+
+NO TLE =>
+
+
+#include <bits/stdc++.h> 
+
+Node *merge(Node *first, Node *second)
+{
+    if (first == NULL)
+    {
+        return second;
+    }
+
+    if (second == NULL)
+    {
+        return first;
+    }
+
+    Node *merged = NULL;
+
+    if (first->data < second->data)
+    {
+        merged = first;
+        merged->child = merge(first->child, second);
+    }
+    else
+    {
+        merged = second;
+        merged->child = merge(first, second->child);
+    }
+    merged->next = nullptr;
+    return merged;
+}
+
+Node *flattenLinkedList(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+
+    head->next = flattenLinkedList(head->next);
+
+    head = merge(head, head->next);
+
+    return head;
+}
