@@ -1,0 +1,11 @@
+int uniqueElement(vector<int> arr, int n)
+{
+    int answer = 0;
+
+    for (int element : arr)
+    {
+        answer ^= element;
+    }
+
+    return answer;
+}
