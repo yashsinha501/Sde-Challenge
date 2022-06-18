@@ -1,0 +1,21 @@
+
+vector<int> getPreOrderTraversal(TreeNode *root)
+{
+    vector<int> ans;
+    if(root==nullptr)return ans;
+    
+    stack<TreeNode*> st;
+    st.push(root);
+    
+    while(!st.empty()){
+        TreeNode* tmp=st.top();
+        st.pop();
+        ans.push_back(tmp->data);
+        
+        if(tmp->right!=nullptr)
+            st.push(tmp->right);
+        if(tmp->left!=nullptr)
+            st.push(tmp->left); 
+    }
+    return ans;
+}
