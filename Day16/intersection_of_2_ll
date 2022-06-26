@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+
+int findIntersection(Node *firstHead, Node *secondHead)
+{
+    Node* a=firstHead;
+    Node* b=secondHead;
+    
+    while(a!=b){
+        if(a==nullptr)a=secondHead;
+        else a=a->next;
+        
+        if(b==nullptr)b=firstHead;
+        else b=b->next;        
+    }
+    if(a==nullptr)return -1;
+    else return a->data;
+}
